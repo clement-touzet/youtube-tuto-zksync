@@ -1,0 +1,72 @@
+Prérequis: git, metamask
+Présentation du projet
+1/ créer un dossier dans un dossier zksync-era-tuto:backend
+// configuration du projet
+2/ dans le back: (evm equivalent != evm compatible)
+>>  npm i ethers@^5.7.2 zksync-web3 typescript ts-node hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy dotenv
+>>  npx hardhat 
+>>  npm i -D @matterlabs/hardhat-zksync-toolbox
+>> npm install --save-dev typechain @typechain/hardhat @typechain/ethers-v5
+
+renommer les fichiers/dossiers
+
+
+
+3/ hardhat.config.ts
+    - copier le code
+--------------- // rédiger le contract intelligent
+4/code du contract intelligent 
+puis faire npx hardhat compile
+
+------
+npm commandes deployDev ...
+("testDev": "set NODE_ENV=development&& npx hardhat test",
+ "deployDev": "set NODE_ENV=development&& npx hardhat deploy-zksync")
+-------------------
+5/deploy sur le testnet:
+    - mettre l'addresse du contract dans un fichier 	
+    - Copier le code
+    - Ne pas oublier de transferer des fonds sur son wallet (faucet l2 https://goerli.portal.zksync.io/faucet, faucet l1
+>>  npx hardhat deploy-zksync
+    - Si on veut passer la commande script npm (scripts:{"deployTestnet": "npx hardhat deploy-zksync"})
+
+------------------
+
+6/ validate contract
+    - flatten le contrat 
+    - si pas bon, il faut bien vérif : le nom, que le code est flattened, 
+    que le contract déployé a été compilé avant d'être déployé(sinon tu risque 
+    de te retrouver avec un code flattened du nouveau contrat alors que tu déploies une ancienne version de ton contrat).
+créer un new event via l'exploreur
+
+- le valider avec hardhat.config:
+npm i -D @matterlabs/hardhat-zksync-verify @nomiclabs/hardhat-etherscan
+>> npx hardhat verify 0x1a53727435a48Fa8de69921381D0C54Fee8E0eeF
+----------
+tester en local:
+(voir le tuto sur la doc)
+-lancer docker
+>>  git clone https://github.com/matter-labs/local-setup.git
+>>  cd local-setup
+>> ./start.sh
+- ajouter sur metamask le local network (ici seul le l2 est necessaire)https://era.zksync.io/docs/api/hardhat/testing.html#connect-wallet-to-local-nodes
+en cas de probleme : >>  ./clear.sh 
+- rich wallets (ceux qu'on a sur notre local blockchain)
+>> npm i -D @matterlabs/hardhat-zksync-chai-matchers
+>> npm install --save-dev mocha chai @types/mocha @types/chai
+- script deployLocal et testLocal(package.json)
+- modif deployDev et testDev
+- modif hardhat.config
+---
+rajouter des test
+---
+
+8/ Lier les types(backend) (https://github.com/dethcrypto/TypeChain/tree/master/packages/hardhat
+-	Imports
+-	Tsconfig.json a modifier
+-	Clean hardhat : npx hardhat clean
+
+
+9/ github push ne pas oublier de ne pas mettre le .env
+
+

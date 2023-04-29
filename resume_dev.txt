@@ -1,0 +1,38 @@
+=============== Backend  ===============
+
+ - commandes npm
+   -> npm install ethers@^5.7.2 zksync-web3 typescript ts-node hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy dotenv
+   -> npm install --save-dev typechain @typechain/hardhat @typechain/ethers-v5 @matterlabs/hardhat-zksync-chai-matchers mocha chai @types/mocha @types/chai @matterlabs/hardhat-zksync-verify @nomiclabs/hardhat-etherscan
+   -> git clone https://github.com/matter-labs/local-setup.git
+
+ - Modification du smart contract 
+   -> npx hardhat compile
+   -> npm run [testLocal | testDev]
+   -> npm run [deployLocal | deployDev]
+
+ - Si besoin de verif le contract:
+   - automatiquement:
+     -> npx hardhat verify [addresseDuContractDeployé]
+   - manuellement
+     -> npm run flattenEventFactory
+        (ou npx hardhat flatten [cheminDuFichier.Sol] > [cheminDuNouveauFichier])
+
+ - Lancer la blockchain zkSync en local 
+   -> ouvrir docker 
+   -> cd local-setup
+   -> ./start.sh
+
+=============== Frontend ===============
+
+/!\ NodeJs : 16.8.0+ /!\
+
+ - Commandes npm:
+   -> npx create-next-app@latest --experimental-app
+npm install @rainbow-me/rainbowkit wagmi @wagmi/core ethers@^5 @chakra-ui/react @emotion/react @emotion/styled framer-motion formik yup encoding @chakra-ui/icons @chakra-ui/next-js
+npm i --save-dev @wagmi/cli 
+
+ - Lancer en localhost le site
+   -> npm run dev
+
+ - Lors de modifications apportées à un smart contract (et qu'il a été compilé)
+   -> npx wagmi generate

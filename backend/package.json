@@ -1,0 +1,32 @@
+{
+  "dependencies": {
+    "@matterlabs/hardhat-zksync-deploy": "^0.6.3",
+    "@matterlabs/hardhat-zksync-solc": "^0.3.16",
+    "@types/chai": "^4.3.4",
+    "chai": "^4.3.7",
+    "dotenv": "^16.0.3",
+    "ethers": "^5.7.2",
+    "hardhat": "^2.13.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4",
+    "zksync-web3": "^0.14.3"
+  },
+  "devDependencies": {
+    "@matterlabs/hardhat-zksync-chai-matchers": "^0.1.2",
+    "@matterlabs/hardhat-zksync-toolbox": "^0.1.1",
+    "@matterlabs/hardhat-zksync-verify": "^0.1.4",
+    "@nomiclabs/hardhat-etherscan": "^3.1.2",
+    "@typechain/ethers-v5": "^10.2.0",
+    "@typechain/hardhat": "^6.1.5",
+    "@types/mocha": "^10.0.1",
+    "mocha": "^10.2.0",
+    "typechain": "^8.1.1"
+  },
+  "scripts": {
+    "testDev": "set NODE_ENV=development&& npx hardhat test",
+    "deployDev": "set NODE_ENV=development&& npx hardhat deploy-zksync",
+    "testLocal": "set NODE_ENV=test&& npx hardhat test",
+    "deployLocal": "set NODE_ENV=test&& npx hardhat deploy-zksync",
+    "flattenEventFactory": "npx hardhat flatten .\\contracts\\EventFactory.sol > .\\flattenedContracts\\flattenedEventFactory.sol"
+  }
+}
